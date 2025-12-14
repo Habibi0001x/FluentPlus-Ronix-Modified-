@@ -5278,20 +5278,22 @@ Components.Window = (function()
 
 		function Window:AddTabDivider()
 			local Divider = New("Frame", {
-				Size = UDim2.new(1, -16, 0, 1),
-				Position = UDim2.new(0, 8, 0, 0),
-				BackgroundTransparency = 0.5,
-				Parent = Window.TabHolder,
-				ZIndex = 9,
+				Size = UDim2.new(1, 0, 0, 1),
+				Position = UDim2.new(0.5, 0, 0, 0),
+				AnchorPoint = Vector2.new(0.5, 0),
+				BackgroundTransparency = 0.9,
 				ThemeTag = {
-					BackgroundColor3 = "ElementBorder",
+					BackgroundColor3 = "Text",
 				},
-			}, {
-				New("UICorner", {
-					CornerRadius = UDim.new(0, 2),
-				}),
 			})
-			return Divider
+			local MainDivider = New("Frame", {
+				Parent = Window.TabHolder,
+				Size = UDim2.new(1, -7, 0, 5),
+				BackgroundTransparency = 1,
+			}, {
+				Divider
+			})
+			return MainDivider
 		end
 
 		function Window:SelectTab(Tab)
