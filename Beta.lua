@@ -2700,6 +2700,7 @@ Components.Tab = (function()
 			BackgroundTransparency = 0.92,
 			Parent = Parent,
 			ZIndex = 10,
+			LayoutOrder = TabIndex,
 			ThemeTag = {
 				BackgroundColor3 = "Tab",
 			},
@@ -5281,6 +5282,8 @@ Components.Window = (function()
 				Parent = Window.TabHolder,
 				Size = UDim2.new(1, -14, 0, 12),
 				BackgroundTransparency = 1,
+				Name = "TabDivider",
+				LayoutOrder = #Window.TabHolder:GetChildren() + 1,
 			}, {
 				New("Frame", {
 					Size = UDim2.new(1, 0, 0, 1),
