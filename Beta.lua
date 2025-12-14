@@ -4476,6 +4476,7 @@ Components.Window = (function()
 		}, {
 			New("UIListLayout", {
 				Padding = UDim.new(0, 4),
+				SortOrder = Enum.SortOrder.LayoutOrder,
 			}),
 		})
 
