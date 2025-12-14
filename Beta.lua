@@ -2663,6 +2663,7 @@ Components.Tab = (function()
 
 	function TabModule:Init(Window)
 		TabModule.Window = Window
+		TabModule.LayoutOrderCounter = 0  -- Reset counter für jedes neue Window
 		return TabModule
 	end
 
@@ -2681,6 +2682,8 @@ Components.Tab = (function()
 		TabModule.LayoutOrderCounter = TabModule.LayoutOrderCounter + 1
 		local TabIndex = TabModule.TabCount
 		local LayoutOrder = TabModule.LayoutOrderCounter
+		
+		print("DEBUG: Tab '" .. Title .. "' created with LayoutOrder = " .. LayoutOrder)
 
 		local Tab = {
 			Selected = false,
@@ -5283,6 +5286,7 @@ Components.Window = (function()
 
 		function Window:AddTabDivider()
 			TabModule.LayoutOrderCounter = TabModule.LayoutOrderCounter + 1
+			print("DEBUG: Divider created with LayoutOrder = " .. TabModule.LayoutOrderCounter)
 			local MainDivider = New("Frame", {
 				Parent = Window.TabHolder,
 				Size = UDim2.new(1, -14, 0, 12),
@@ -6342,6 +6346,11 @@ ElementsTable.Paragraph = (function()
 		Paragraph.SetDesc = Paragraph.SetDesc
 		Paragraph.Visible = Paragraph.Visible
 		Paragraph.Elements = Paragraph
+		
+		-- Add SetContent method as alias for SetDesc
+		function Paragraph:SetContent(Content)
+			return self:SetDesc(Content)
+		end
 
 		return Paragraph
 	end
