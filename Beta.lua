@@ -2658,6 +2658,7 @@ Components.Tab = (function()
 		TabCount = 0,
 		AnimationTask = nil,
 		CurrentAnimationTab = 0,
+		LayoutOrderCounter = 0,
 	}
 
 	function TabModule:Init(Window)
@@ -2677,7 +2678,9 @@ Components.Tab = (function()
 		local Elements = Library.Elements
 
 		TabModule.TabCount = TabModule.TabCount + 1
+		TabModule.LayoutOrderCounter = TabModule.LayoutOrderCounter + 1
 		local TabIndex = TabModule.TabCount
+		local LayoutOrder = TabModule.LayoutOrderCounter
 
 		local Tab = {
 			Selected = false,
@@ -2700,7 +2703,7 @@ Components.Tab = (function()
 			BackgroundTransparency = 0.92,
 			Parent = Parent,
 			ZIndex = 10,
-			LayoutOrder = TabIndex,
+			LayoutOrder = LayoutOrder,
 			ThemeTag = {
 				BackgroundColor3 = "Tab",
 			},
@@ -5279,12 +5282,13 @@ Components.Window = (function()
 		end
 
 		function Window:AddTabDivider()
+			TabModule.LayoutOrderCounter = TabModule.LayoutOrderCounter + 1
 			local MainDivider = New("Frame", {
 				Parent = Window.TabHolder,
 				Size = UDim2.new(1, -14, 0, 12),
 				BackgroundTransparency = 1,
 				Name = "TabDivider",
-				LayoutOrder = #Window.TabHolder:GetChildren() + 1,
+				LayoutOrder = TabModule.LayoutOrderCounter,
 			}, {
 				New("Frame", {
 					Size = UDim2.new(1, 0, 0, 1),
