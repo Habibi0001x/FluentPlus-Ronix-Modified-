@@ -9,7 +9,7 @@
 
 A modified version of Fluent
 https://fluent-pl.us
-
+	Modified for Ronix.
 ]]
 
 local Lighting = game:GetService("Lighting")
@@ -5196,6 +5196,23 @@ Components.Window = (function()
 		function Window:AddTab(TabConfig)
 			local tab = TabModule:New(TabConfig.Title, TabConfig.Icon, Window.TabHolder)
 			return tab
+		end
+
+		function Window:AddTabDivider()
+			local Divider = New("Frame", {
+				Size = UDim2.new(1, 0, 0, 1),
+				BackgroundTransparency = 0.8,
+				Parent = Window.TabHolder,
+				ZIndex = 9,
+				ThemeTag = {
+					BackgroundColor3 = "ElementBorder",
+				},
+			}, {
+				New("UICorner", {
+					CornerRadius = UDim.new(0, 2),
+				}),
+			})
+			return Divider
 		end
 
 		function Window:SelectTab(Tab)
