@@ -9,7 +9,7 @@
 
 A modified version of Fluent
 https://fluent-pl.us
-	Modified for Ronix.
+
 ]]
 
 local Lighting = game:GetService("Lighting")
@@ -5200,8 +5200,9 @@ Components.Window = (function()
 
 		function Window:AddTabDivider()
 			local Divider = New("Frame", {
-				Size = UDim2.new(1, 0, 0, 1),
-				BackgroundTransparency = 0.8,
+				Size = UDim2.new(1, -16, 0, 1),
+				Position = UDim2.new(0, 8, 0, 0),
+				BackgroundTransparency = 0.5,
 				Parent = Window.TabHolder,
 				ZIndex = 9,
 				ThemeTag = {
